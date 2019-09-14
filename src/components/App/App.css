@@ -1,0 +1,23 @@
+.container {
+  max-width: 1200px;
+  margin: 40px auto;
+  background: #e3e3e3;
+  border: 1px solid black;
+  padding: 20px;
+}
+
+.heading {
+  text-align: center;
+  font-size: 30px;
+}
+
+.button {
+  margin: auto;
+  display: block;
+  background: #159CD5;
+  color: #fff;
+  font-weight: 700;
+  font-size: 20px;
+  padding: 10px 25px;
+  border-radius: 10px;
+}
