@@ -1,0 +1,14 @@
+
+.toolbar__container {
+  height: 50px;
+  background-color: lightcoral;
+  margin: 10px 0;
+  padding: 5px;
+}
+
+.toolbar__icon {
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  border: 1px solid grey;
+}
