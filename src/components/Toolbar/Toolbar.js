@@ -5,59 +5,45 @@ import { faBold, faUnderline, faItalic, faAlignRight } from '@fortawesome/free-s
 import "./Toolbar.css";
 import { RichUtils } from "draft-js";
 
+const data = [
+  {
+    style: "BOLD",
+    icon: faBold
+  },
+  {
+    style: "ITALIC",
+    icon: faItalic
+  },
+  {
+    style: "UNDERLINE",
+    icon: faUnderline
+  }
+]
+
 class Toolbar extends Component {
   
-  // changeTextStyle = () => {
-  //   this.props.handleChange(RichUtils.toggleInlineStyle(this.props.editState, "BOLD"));
-  // }
-
-  changeBoldStyle = () => {
-  this.props.handleChange(RichUtils.toggleInlineStyle(this.props.editState, "BOLD"));
+  changeStyle = (event, style) => {
+    event.preventDefault();
+    this.props.handleChange(RichUtils.toggleInlineStyle(this.props.editState, style));
   }
 
-  changeItalicStyle = () => {
-    this.props.handleChange(RichUtils.toggleInlineStyle(this.props.editState, "ITALIC"));
-  }
-
-  changeUnderlineStyle = () => {
-    this.props.handleChange(RichUtils.toggleInlineStyle(this.props.editState, "UNDERLINE"));
-  }
-
-  isActiveBold = () => {
+  isActive = (style) => {
     const currentStyle = this.props.editState.getCurrentInlineStyle();
-    return currentStyle.has("BOLD") ? "toolbar__icon active" : "toolbar__icon"
-  }
-
-  isActiveItalic = () => {
-    const currentStyle = this.props.editState.getCurrentInlineStyle();
-    return currentStyle.has("ITALIC") ? "toolbar__icon active" : "toolbar__icon"
-  }
-
-  isActiveUnderline = () => {
-    const currentStyle = this.props.editState.getCurrentInlineStyle();
-    return currentStyle.has("UNDERLINE") ? "toolbar__icon active" : "toolbar__icon"
-  }
-
-  isActiveAlignRight = () => {
-    const currentStyle = this.props.editState.getCurrentInlineStyle();
-    return currentStyle.has("ALIGNRIGHT") ? "toolbar__icon active" : "toolbar__icon"
+    return currentStyle.has(style) ? "toolbar__icon active" : "toolbar__icon"
   }
 
   render() {
     return (
       <div className="toolbar__container">
-        <button className={this.isActiveBold()} onClick={this.changeBoldStyle}>
-          <FontAwesomeIcon icon={faBold}/>
-        </button>
-        <button className={this.isActiveItalic()} onClick={this.changeItalicStyle}>
-          <FontAwesomeIcon icon={faItalic}/>
-        </button>
-        <button className={this.isActiveUnderline()} onClick={this.changeUnderlineStyle}>
-          <FontAwesomeIcon icon={faUnderline}/>
-        </button>
-        <button className={this.isActiveAlignRight()} onClick={this.changeAlignRightStyle}>
-          <FontAwesomeIcon icon={faAlignRight}/>
-        </button>
+        {data.map((inlineStyle, index) => (
+          <button 
+            key={index} 
+            className={this.isActive(inlineStyle.style)} 
+            onClick={(event) => this.changeStyle(event, inlineStyle.style)}
+          >
+            <FontAwesomeIcon icon={inlineStyle.icon}/>
+          </button> 
+        ))}
       </div>
     )
   }
