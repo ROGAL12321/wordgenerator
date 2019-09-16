@@ -10,11 +10,15 @@ class Toolbar extends Component {
   changeTextStyle = () => {
     this.props.handleChange(RichUtils.toggleInlineStyle(this.props.editState, "BOLD"));
   }
-  
+  isActive = () => {
+    const currentStyle = this.props.editState.getCurrentInlineStyle();
+    return currentStyle.has("BOLD") ? "toolbar__icon active" : "toolbar__icon"
+  }
+
   render() {
     return (
       <div className="toolbar__container">
-        <button className="toolbar__icon" onClick={this.changeTextStyle}>
+        <button className={this.isActive()} onClick={this.changeTextStyle}>
           <FontAwesomeIcon icon={faBold}/>
         </button>
       </div>

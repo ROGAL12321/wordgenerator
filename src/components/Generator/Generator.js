@@ -20,7 +20,6 @@ class Generator extends React.Component {
         <Toolbar handleChange={this.onChange} editState={this.state.editorState}/>
         <div className="editor__container">
           <Editor 
-            placeholder="Wpisz...."
             editorState={this.state.editorState}
             onChange={this.onChange}
           />
