@@ -33,6 +33,14 @@ const blockStyleData = [
     style: "header-three",
     icon: "H3"
   },
+  {
+    style: "unordered-list-item",
+    icon: "UL"
+  },
+  {
+    style: "ordered-list-item",
+    icon: "OL"
+  },
 ]
 
 class Toolbar extends Component {
@@ -82,9 +90,11 @@ class Toolbar extends Component {
             {blockStyle.icon}
           </button>
         ))}
-        
-        <button onClick={(event) => this.changeBlockStyle(event)}>UL</button>
-        <button onClick={(event) => this.changeBlockStyle(event)}>OL</button>
+        {/* <button onClick={(event) => this.changeBlockStyle(event)}>UL</button>
+        <button onClick={(event) => this.changeBlockStyle(event)}>OL</button> */}
+        {/* <button className={this.isBlockActive()}onClick={(event)=>this.changeBlockStyle(event)}>ico</button> */}
+
+
       </div>
     )
   }
