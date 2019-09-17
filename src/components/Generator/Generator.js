@@ -2,6 +2,8 @@ import React from 'react';
 import { Editor, EditorState } from 'draft-js';
 import "./Generator.css";
 import Toolbar from "../Toolbar/Toolbar";
+import { RichUtils } from "draft-js";
+
 
 class Generator extends React.Component {  
   state = {
@@ -14,6 +16,17 @@ class Generator extends React.Component {
     })
   }
   
+  handleKeyCommand = command => {
+    const newState = RichUtils.handleKeyCommand(this.state.editorState, command);
+    
+    if (newState) {
+      this.onChange(newState);
+      return "handled";
+    }
+
+    return "not-handled";
+  }
+
   render() {
     return (
       <div className="editor__wrapper">
@@ -22,6 +35,7 @@ class Generator extends React.Component {
           <Editor 
             editorState={this.state.editorState}
             onChange={this.onChange}
+            handleKeyCommand={this.handleKeyCommand}
           />
         </div>
       </div>
