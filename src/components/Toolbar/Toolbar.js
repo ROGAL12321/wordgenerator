@@ -20,6 +20,21 @@ const data = [
   }
 ]
 
+const blockStyleData = [
+  {
+    style: "header-one",
+    icon: "H1"
+  },
+  {
+    style: "header-two",
+    icon: "H2"
+  },
+  {
+    style: "header-three",
+    icon: "H3"
+  },
+]
+
 class Toolbar extends Component {
   
   changeInlineStyle = (event, style) => {
@@ -39,13 +54,12 @@ class Toolbar extends Component {
       .getBlockForKey(selection.getStartKey())
       .getType();
 
-    return blockType === "header-one" ? "toolbar__icon active" : "toolbar__icon"
-    
+    return blockType === style ? "toolbar__icon active" : "toolbar__icon"
   }
 
-  changeBlockStyle = (event) => {
+  changeBlockStyle = (event, blockStyle) => {
     event.preventDefault();
-    this.props.handleChange(RichUtils.toggleBlockType(this.props.editState, "header-one"))
+    this.props.handleChange(RichUtils.toggleBlockType(this.props.editState, blockStyle))
   }
 
   render() {
@@ -60,9 +74,15 @@ class Toolbar extends Component {
             <FontAwesomeIcon icon={inlineStyle.icon}/>
           </button> 
         ))}
-        <button className={this.isBlockActive()}onClick={(event) => this.changeBlockStyle(event)}>H1</button>
-        <button onClick={(event) => this.changeBlockStyle(event)}>H2</button>
-        <button onClick={(event) => this.changeBlockStyle(event)}>H3</button>
+        {blockStyleData.map((blockStyle,index) => (
+          <button 
+            className={this.isBlockActive(blockStyle.style)}
+            key={index}
+            onClick={(event) => this.changeBlockStyle(event, blockStyle.style)}>
+            {blockStyle.icon}
+          </button>
+        ))}
+        
         <button onClick={(event) => this.changeBlockStyle(event)}>UL</button>
         <button onClick={(event) => this.changeBlockStyle(event)}>OL</button>
       </div>
