@@ -1,9 +1,12 @@
 import React from 'react';
-import { Editor, EditorState } from 'draft-js';
-import "./Generator.css";
-import Toolbar from "../Toolbar/Toolbar";
-import { RichUtils } from "draft-js";
+import { EditorState } from "draft-js"; 
+import { Editor } from 'react-draft-wysiwyg';
 
+import "./Generator.css";
+
+const options = {
+  options: ['history', 'inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker']
+}
 
 class Generator extends React.Component {  
   state = {
@@ -15,30 +18,17 @@ class Generator extends React.Component {
       editorState: newEditorState
     })
   }
-  
-  handleKeyCommand = command => {
-    const newState = RichUtils.handleKeyCommand(this.state.editorState, command);
-    
-    if (newState) {
-      this.onChange(newState);
-      return "handled";
-    }
-
-    return "not-handled";
-  }
 
   render() {
     return (
-      <div className="editor__wrapper">
-        <Toolbar handleChange={this.onChange} editState={this.state.editorState}/>
-        <div className="editor__container">
-          <Editor 
-            editorState={this.state.editorState}
-            onChange={this.onChange}
-            handleKeyCommand={this.handleKeyCommand}
-          />
-        </div>
-      </div>
+          <Editor
+          toolbar={options}
+          editorState={this.state.editorState}
+          toolbarClassName="toolbarClassName"
+          wrapperClassName="editor__wrapper"
+          editorClassName="editor__container"
+          onEditorStateChange={this.onChange}
+        />
     )
   }
 }
