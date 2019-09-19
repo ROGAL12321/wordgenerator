@@ -1,23 +1,25 @@
 .container {
   max-width: 1200px;
-  margin: 40px auto;
-  background: #e3e3e3;
-  border: 1px solid black;
+  margin: auto;
+  background: #fafafa;
   padding: 20px;
 }
 
 .heading {
   text-align: center;
-  font-size: 30px;
+  font-size: 25px;
+  color: rgb(123, 128, 136);
 }
 
 .button {
   margin: auto;
   display: block;
-  background: #159CD5;
-  color: #fff;
+  background: #fff;
+  color: rgb(123, 128, 136);
   font-weight: 700;
   font-size: 20px;
-  padding: 10px 25px;
-  border-radius: 10px;
+  padding: 10px 50px;
+  border-radius: 20px;
+  border: 1px solid rgb(123, 128, 136);
+  cursor: pointer;
 }

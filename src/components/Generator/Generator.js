@@ -5,7 +5,7 @@ import { Editor } from 'react-draft-wysiwyg';
 import "./Generator.css";
 
 const options = {
-  options: ['history', 'inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker']
+  options: ['history', 'inline', 'blockType', 'fontSize', 'fontFamily', 'colorPicker', 'list', 'textAlign']
 }
 
 class Generator extends React.Component {  
