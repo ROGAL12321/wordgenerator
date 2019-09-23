@@ -10,10 +10,12 @@
     "draft-js-alignment-plugin": "^2.0.6",
     "draft-js-focus-plugin": "^3.0.1",
     "draft-js-plugins-editor": "^3.0.0",
+    "draftjs-to-html": "^0.8.4",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-draft-wysiwyg": "^1.13.2",
-    "react-scripts": "3.1.1"
+    "react-scripts": "3.1.1",
+    "whatwg-fetch": "^3.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
