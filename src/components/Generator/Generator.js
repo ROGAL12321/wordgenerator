@@ -8,7 +8,15 @@ import 'whatwg-fetch'
 import "./Generator.css";
 
 const options = {
-  options: ['history', 'inline', 'blockType', 'fontSize', 'fontFamily', 'colorPicker', 'list', 'textAlign']
+  options: ['history', 'inline', 'blockType', 'fontSize', 'fontFamily', 'colorPicker', 'list', 'textAlign'],
+  colorPicker: {
+    colors: ['#61bd6d', '#1abc9c', '#54acd2', '#2c82c9',
+      '#9365b8', '#475577', '#cccccc', '#41a85f', '#00a885',
+      '#3d8eb9', '#2969b0', '#553982', '#28324e', '#000',
+      '#f7da64', '#fba026', '#eb6b56', '#e25041', '#a38f84',
+      '#efefef', '#ffffff', '#fac51c', '#f37934', '#d14841',
+      '#b8312f', '#7c706b', '#d1d5d8'],
+  },
 }
 
 //@TODO: Change endpoint URL
@@ -36,6 +44,8 @@ class Generator extends React.Component {
       body: draftToHtml(convertToRaw(this.state.editorState.getCurrentContent()))
     };
 
+    console.log(draftToHtml(convertToRaw(this.state.editorState.getCurrentContent())))
+
     fetch(API_URL, {
       method: 'POST',
       headers: {
@@ -43,6 +53,7 @@ class Generator extends React.Component {
       },
       body: JSON.stringify(data)
     })
+      .then(r => r.json())
       .then(res => this.setState({ response: res }))
       .catch(error =>this.setState({ response: error }))
   }
