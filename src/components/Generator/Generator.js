@@ -20,7 +20,7 @@ const options = {
 }
 
 //@TODO: Change endpoint URL
-const API_URL = 'endpoint'
+const API_URL = 'http://localhost:8085/generate'
 
 class Generator extends React.Component {  
   state = {
@@ -44,18 +44,17 @@ class Generator extends React.Component {
       body: draftToHtml(convertToRaw(this.state.editorState.getCurrentContent()))
     };
 
-    console.log(draftToHtml(convertToRaw(this.state.editorState.getCurrentContent())))
-
     fetch(API_URL, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(data)
     })
       .then(r => r.json())
       .then(res => this.setState({ response: res }))
       .catch(error =>this.setState({ response: error }))
+  }
   }
 
   render() {
@@ -80,7 +79,7 @@ class Generator extends React.Component {
             value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
           />
         )}
-        {/* {response && <p> {response} </p>} */}
+        {response && <p><a href={response.url}>{response.url}</a> </p>}
         <button className="button" type="button" onClick={this.saveHTML}> Zapisz </button>
       </Fragment>
     )
