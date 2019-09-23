@@ -55,7 +55,6 @@ class Generator extends React.Component {
       .then(res => this.setState({ response: res }))
       .catch(error =>this.setState({ response: error }))
   }
-  }
 
   render() {
     const { editorState, openHTML, response } = this.state;
