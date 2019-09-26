@@ -8,8 +8,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import Popper from 'popper.js';
 
-import '../../../node_modules/summernote/dist/summernote.js'
-import '../../../node_modules/summernote/dist/summernote.css'
+import 'summernote/dist/summernote.js'
+import 'summernote/dist/summernote.css'
 
 import "./Generator.css";
 
@@ -26,7 +26,7 @@ class Generator extends React.Component {
   componentDidMount() {
     $('#summernote').summernote({
       height: 500,
-      fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Times New Roman', 'Helvetica'],
+      fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Times New'],
       toolbar: [
         ['view', ['undo', 'redo']],
         ['style', ['style']],
