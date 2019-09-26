@@ -1,32 +1,43 @@
-import React, { Fragment } from 'react';
-import { EditorState, convertToRaw } from "draft-js"; 
-import { Editor } from 'react-draft-wysiwyg';
-import draftToHtml from 'draftjs-to-html';
+import React from 'react';
 
 import 'whatwg-fetch'
 
+import $ from 'jquery';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import Popper from 'popper.js';
+
+import '../../../node_modules/summernote/dist/summernote.js'
+import '../../../node_modules/summernote/dist/summernote.css'
+
 import "./Generator.css";
 
-const options = {
-  options: ['history', 'inline', 'blockType', 'fontSize', 'fontFamily', 'colorPicker', 'list', 'textAlign'],
-  colorPicker: {
-    colors: ['#61bd6d', '#1abc9c', '#54acd2', '#2c82c9',
-      '#9365b8', '#475577', '#cccccc', '#41a85f', '#00a885',
-      '#3d8eb9', '#2969b0', '#553982', '#28324e', '#000',
-      '#f7da64', '#fba026', '#eb6b56', '#e25041', '#a38f84',
-      '#efefef', '#ffffff', '#fac51c', '#f37934', '#d14841',
-      '#b8312f', '#7c706b', '#d1d5d8'],
-  },
-}
 
 //@TODO: Change endpoint URL
 const API_URL = 'http://localhost:8085/generate'
 
 class Generator extends React.Component {  
   state = {
-    editorState: EditorState.createEmpty(),
     response: null,
     openHTML: false
+  }
+
+  componentDidMount() {
+    $('#summernote').summernote({
+      height: 500,
+      fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Times New Roman', 'Helvetica'],
+      toolbar: [
+        ['view', ['undo', 'redo']],
+        ['style', ['style']],
+        ['font', ['bold', 'underline', 'clear']],
+        ['fontname', ['fontname']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['table', ['table']],
+        ['view', ['codeview']],
+      ],
+    });
   }
 
   onChange = (newEditorState) => {
@@ -41,7 +52,7 @@ class Generator extends React.Component {
     e.preventDefault();
 
     const data = {
-      body: draftToHtml(convertToRaw(this.state.editorState.getCurrentContent()))
+      body: $('#summernote').summernote('code')
     };
 
     fetch(API_URL, {
@@ -57,30 +68,23 @@ class Generator extends React.Component {
   }
 
   render() {
-    const { editorState, openHTML, response } = this.state;
+    const { openHTML, response } = this.state;
 
     return (
-      <Fragment>
-        <Editor
-          toolbar={options}
-          editorState={editorState}
-          toolbarClassName="toolbarClassName"
-          wrapperClassName="editor__wrapper"
-          editorClassName="editor__container"
-          onEditorStateChange={this.onChange}
-        />
-        <button className="button" onClick={this.toggleHTML}>Pokaż HTML</button>
+      <div className="generator">
+        <div id="summernote" onKeyPress={e => console.log('das')}/>
+        {/* <button className="button" onClick={this.toggleHTML}>Pokaż HTML</button> */}
 
         {openHTML && (
           <textarea
             className="textarea"
             disabled
-            value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
+            value={$('#summernote').summernote('code')}
           />
         )}
         {response && <p><a href={response.url}>{response.url}</a> </p>}
         <button className="button" type="button" onClick={this.saveHTML}> Zapisz </button>
-      </Fragment>
+      </div>
     )
   }
 }
