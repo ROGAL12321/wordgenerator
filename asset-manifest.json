@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/static/css/main.79f4bbc8.chunk.css",
+    "main.js": "/static/js/main.42cb4216.chunk.js",
+    "main.js.map": "/static/js/main.42cb4216.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.18d72f0f.js",
+    "runtime~main.js.map": "/static/js/runtime~main.18d72f0f.js.map",
+    "static/css/2.70491637.chunk.css": "/static/css/2.70491637.chunk.css",
+    "static/js/2.566005d4.chunk.js": "/static/js/2.566005d4.chunk.js",
+    "static/js/2.566005d4.chunk.js.map": "/static/js/2.566005d4.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.e72cd025698b380ff2efd36ec3d53d69.js": "/precache-manifest.e72cd025698b380ff2efd36ec3d53d69.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.70491637.chunk.css.map": "/static/css/2.70491637.chunk.css.map",
+    "static/css/main.79f4bbc8.chunk.css.map": "/static/css/main.79f4bbc8.chunk.css.map",
+    "static/media/summernote.css": "/static/media/summernote.c93a01ef.woff"
+  }
+}
