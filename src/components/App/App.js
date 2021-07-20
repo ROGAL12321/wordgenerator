@@ -5,7 +5,7 @@ import Generator from '../Generator/Generator';
 function App() {
   return (
     <div className="container">
-      <h1 className="heading"> Word Generator </h1>
+      <h1 className="heading"> Word Generator Test </h1>
       <Generator/>
     </div>
   );
